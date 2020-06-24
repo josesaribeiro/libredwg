@@ -16246,19 +16246,51 @@ static int test_NURBSURFACE (const Dwg_Object *obj)
         fail ("NURBSURFACE.block_size [BL*]");
   }
   {
-    BITCODE_BL class_version;
-    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "class_version", &class_version, NULL)
-        && class_version == nurbsurface->class_version)
+    BITCODE_B cv_hull_display;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "cv_hull_display", &cv_hull_display, NULL)
+        && cv_hull_display == nurbsurface->cv_hull_display)
       pass ();
     else
-      fail ("NURBSURFACE.class_version [BL] %u != %u", nurbsurface->class_version, class_version);
-    class_version++;
-    if (dwg_dynapi_entity_set_value (nurbsurface, "NURBSURFACE", "class_version", &class_version, 0)
-        && class_version == nurbsurface->class_version)
+      fail ("NURBSURFACE.cv_hull_display [B] " FORMAT_B " != " FORMAT_B "", nurbsurface->cv_hull_display, cv_hull_display);
+    cv_hull_display++;
+    if (dwg_dynapi_entity_set_value (nurbsurface, "NURBSURFACE", "cv_hull_display", &cv_hull_display, 0)
+        && cv_hull_display == nurbsurface->cv_hull_display)
       pass ();
     else
-      fail ("NURBSURFACE.class_version [BL] set+1 %u != %u", nurbsurface->class_version, class_version);
-    nurbsurface->class_version--;
+      fail ("NURBSURFACE.cv_hull_display [B] set+1 " FORMAT_B " != " FORMAT_B "", nurbsurface->cv_hull_display, cv_hull_display);
+    nurbsurface->cv_hull_display--;
+  }
+  {
+    BITCODE_3BD dir1;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "dir1", &dir1, NULL)
+        && !memcmp (&dir1, &nurbsurface->dir1, sizeof (BITCODE_3BD)))
+        pass ();
+    else
+        fail ("NURBSURFACE.dir1 [3BD]");
+  }
+  {
+    BITCODE_3BD dir2;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "dir2", &dir2, NULL)
+        && !memcmp (&dir2, &nurbsurface->dir2, sizeof (BITCODE_3BD)))
+        pass ();
+    else
+        fail ("NURBSURFACE.dir2 [3BD]");
+  }
+  {
+    BITCODE_3BD dir3;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "dir3", &dir3, NULL)
+        && !memcmp (&dir3, &nurbsurface->dir3, sizeof (BITCODE_3BD)))
+        pass ();
+    else
+        fail ("NURBSURFACE.dir3 [3BD]");
+  }
+  {
+    BITCODE_3BD dir4;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "dir4", &dir4, NULL)
+        && !memcmp (&dir4, &nurbsurface->dir4, sizeof (BITCODE_3BD)))
+        pass ();
+    else
+        fail ("NURBSURFACE.dir4 [3BD]");
   }
   {
     char ** encr_sat_data;
@@ -16353,21 +16385,6 @@ static int test_NURBSURFACE (const Dwg_Object *obj)
       pass ();
     else
       fail ("NURBSURFACE.materials [Dwg_3DSOLID_material*] * %u num_materials", count);
-  }
-  {
-    BITCODE_BS modeler_format_version;
-    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "modeler_format_version", &modeler_format_version, NULL)
-        && modeler_format_version == nurbsurface->modeler_format_version)
-      pass ();
-    else
-      fail ("NURBSURFACE.modeler_format_version [BS] %hu != %hu", nurbsurface->modeler_format_version, modeler_format_version);
-    modeler_format_version++;
-    if (dwg_dynapi_entity_set_value (nurbsurface, "NURBSURFACE", "modeler_format_version", &modeler_format_version, 0)
-        && modeler_format_version == nurbsurface->modeler_format_version)
-      pass ();
-    else
-      fail ("NURBSURFACE.modeler_format_version [BS] set+1 %hu != %hu", nurbsurface->modeler_format_version, modeler_format_version);
-    nurbsurface->modeler_format_version--;
   }
   {
     BITCODE_BL num_blocks;
@@ -16535,6 +16552,21 @@ static int test_NURBSURFACE (const Dwg_Object *obj)
     else
       fail ("NURBSURFACE.sab_size [BL] set+1 %u != %u", nurbsurface->sab_size, sab_size);
     nurbsurface->sab_size--;
+  }
+  {
+    BITCODE_BS short170;
+    if (dwg_dynapi_entity_value (nurbsurface, "NURBSURFACE", "short170", &short170, NULL)
+        && short170 == nurbsurface->short170)
+      pass ();
+    else
+      fail ("NURBSURFACE.short170 [BS] %hu != %hu", nurbsurface->short170, short170);
+    short170++;
+    if (dwg_dynapi_entity_set_value (nurbsurface, "NURBSURFACE", "short170", &short170, 0)
+        && short170 == nurbsurface->short170)
+      pass ();
+    else
+      fail ("NURBSURFACE.short170 [BS] set+1 %hu != %hu", nurbsurface->short170, short170);
+    nurbsurface->short170--;
   }
   {
     Dwg_3DSOLID_silhouette* silhouettes;
